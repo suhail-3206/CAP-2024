@@ -1,0 +1,19 @@
+class Solution {
+    public int firstUniqChar(String a) {
+        LinkedHashMap <Character,Integer> map=new LinkedHashMap<>();
+        for(int i=0;i<a.length();i++){
+            if(map.containsKey(a.charAt(i))){
+                map.put(a.charAt(i),map.get(a.charAt(i))+1);
+            }
+            else{
+                map.put(a.charAt(i),1);
+            }
+        }
+        for(Map.Entry<Character,Integer> ex:map.entrySet()){
+            if(ex.getValue()==1){
+                return a.indexOf(ex.getKey());
+            }
+        }
+        return -1;
+    }
+}
