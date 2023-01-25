@@ -1,0 +1,42 @@
+import java.util.*;
+import java.lang.*;
+public class Main
+{
+    //THE NODE OF THE TREE CONSISTES OF DATA, LEFT AND RIGHT
+    static class Node{
+        int data;
+        Node left;
+        Node right;
+        
+        Node(int data){
+            this.data=data;
+            this.left=null;
+            this.right=null;
+        }
+        
+    }
+    //BUILDING THE TREE IN PREORDER MANNER USING BINARYTREE CLASS
+    //BULIDTREE METHOD HELPS TO CREATE THE TREE IN PREORDER MANNER
+    static class Binarytree{
+        
+        static int index=-1;
+        public static Node buildtree(int nodes[]){
+        index++;
+        
+        if(nodes[index]==-1){
+            return null;
+        }
+        
+            Node newnode=new Node(nodes[index]);
+            newnode.left=buildtree(nodes);
+            newnode.right=buildtree(nodes);
+            return newnode;
+        }
+    }
+    public static void main(String args[]){
+        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        Binarytree bt =new Binarytree();
+        Node root = bt.buildtree(nodes);
+        System.out.println(root.data);
+    }
+}
