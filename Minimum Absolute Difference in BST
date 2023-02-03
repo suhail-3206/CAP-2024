@@ -1,0 +1,34 @@
+public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int getMinimumDifference(TreeNode root) {
+        ArrayList<Integer> mylis =new ArrayList<Integer>();
+        myhelper(mylis,root);
+        Collections.sort(mylis);
+        int min=100_001;
+        for(int i=1;i<mylis.size();i++){
+             int diff=Math.abs(mylis.get(i-1)-mylis.get(i));
+             if(min>diff) min=diff;
+        }
+        return min;   
+    }
+    public void myhelper(List<Integer> mylis,TreeNode root){
+         if(root==null){
+            return ;
+        }
+        mylis.add(root.val);
+        myhelper(mylis,root.left);
+        myhelper(mylis,root.right);
+    }
+}
