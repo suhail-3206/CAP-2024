@@ -1,0 +1,20 @@
+class Solution {
+    public void myhelper(int[][] image,int sr,int sc,int rows,int cols,int source,int color){
+        if(sr<0||sc<0||sr>=rows||sc>=cols||image[sr][sc]!=source){
+            return ;
+        }
+        image[sr][sc]=color;
+        myhelper(image,sr+1,sc,rows,cols,source,color);
+        myhelper(image,sr-1,sc,rows,cols,source,color);
+        myhelper(image,sr,sc+1,rows,cols,source,color);
+        myhelper(image,sr,sc-1,rows,cols,source,color);
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        if(color==image[sr][sc]) return image;
+        int rows=image.length;
+        int cols=image[0].length;
+        int source=image[sr][sc];
+        myhelper(image,sr,sc,rows,cols,source,color);
+        return image;
+    }
+}
